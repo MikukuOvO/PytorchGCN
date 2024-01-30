@@ -50,7 +50,7 @@ def load_data(path="./cora/", dataset="cora"):
     adj = adj + adj.T.multiply(adj.T > adj) - adj.multiply(adj.T > adj)
     
     features = normalize(features)
-    adj = normalize(adj + sp.eye(adj.shape[0])) # A+I
+    adj = normalize(adj + sp.eye(adj.shape[0])) # D^{-1/2} * (A+I) * D^{-1/2}
 
     idx_train = range(140)
     idx_val = range(200, 500)
