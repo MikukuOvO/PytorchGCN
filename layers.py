@@ -23,7 +23,7 @@ class GraphConvolution(Module):
 
     def forward(self, input, adj):
         support = torch.mm(input, self.weight)
-        output = torch.spmm(adj, support)
+        output = torch.spmm(adj, support) # 稀疏矩阵乘法
         if self.bias is not None:
             return output + self.bias
         else:
