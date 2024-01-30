@@ -4,7 +4,7 @@ from torch.nn.parameter import Parameter
 from torch.nn.modules.module import Module
 
 class GraphConvolution(Module):
-    def __init__(self, in_features, out_features, bias=True):
+    def __init__(self, in_features, out_features, bias=False): # bias 论文中并没有给出这块，原来代码设置的事 True，但是 False 对于 test 基本没有影响
         super(GraphConvolution, self).__init__()
         self.in_features = in_features
         self.out_features = out_features

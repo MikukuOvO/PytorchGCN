@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--seed', type=int, default=42, help='Random seed.')
-parser.add_argument('--epochs', type=int, default=200,
+parser.add_argument('--epochs', type=int, default=600,
                     help='Number of epochs to train')
 parser.add_argument('--lr', type=float, default=0.01,
                     help='Initial learning rate')
@@ -41,12 +41,12 @@ val_accuracy = []
 def train(epoch):
     t = time.time()
     model.train()
-    optimizer.zero_grad()
+    optimizer.zero_grad() # 清除梯度信息
     output = model(features, adj)
-    loss_train = F.nll_loss(output[idx_train], labels[idx_train])
+    loss_train = F.nll_loss(output[idx_train], labels[idx_train]) # 负对数似然函数
     acc_train = accuracy(output[idx_train], labels[idx_train])
     loss_train.backward()
-    optimizer.step()
+    optimizer.step() # 更新模型参数
 
     loss_val = F.nll_loss(output[idx_val], labels[idx_val])
     acc_val = accuracy(output[idx_val], labels[idx_val])
